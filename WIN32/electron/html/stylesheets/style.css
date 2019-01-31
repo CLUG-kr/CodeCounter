@@ -1,0 +1,258 @@
+@CHARSET "UTF-8";
+@font-face {
+  font-family: "나눔스퀘어";
+  src: url(../font/NanumSquareR.ttf) format('truetype');
+}
+
+body {
+  font-family: "나눔스퀘어", sans-serif; 
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+label, a, p, strong, span, h1, h2, h3, h4, h5, h6, td, th {font-family: "나눔스퀘어"}
+li {list-style: none; cursor: pointer;}
+#wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	position: relative;
+}
+
+#title-bar {
+	position: fixed;
+	top: 0;
+	-webkit-app-region: drag;
+	 height: 24px; 
+	 background-color: #333;
+ 	margin: 0px; 
+}
+#title {
+ position: fixed;
+ top: 0px;
+ left: 6px; 
+}
+
+#title-bar-btns {
+ -webkit-app-region: no-drag;
+ position: fixed;
+ top: 0px;
+ right: 6px;
+}
+/*--------------------------------------------------------------
+# SideBar
+--------------------------------------------------------------*/
+
+@media (min-width: 768px){
+	.sidebar {
+    	width: 225px !important;
+	}
+}
+.sidebar {
+    width: 90px !important;
+    background-color: #212529;
+    min-height: calc(100vh - 56px);
+}
+.navbar-nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+@media (min-width: 768px){
+.sidebar.toggled .nav-item .nav-link {
+    text-align: center;
+    padding: 0.75rem 1rem;
+    width: 90px;
+    }
+}
+.navbar-nav .nav-item.active .nav-link {
+    color: #fff;
+}
+@media (min-width: 768px){
+.sidebar .nav-item .nav-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    width: 225px;
+	}
+}
+.sidebar .nav-item .nav-link {
+    color: rgba(255, 255, 255, 0.5);
+}
+.sidebar .nav-item .nav-link {
+    text-align: center;
+    padding: 0.75rem 1rem;
+    width: 90px;
+}
+@media (min-width: 768px){
+	.sidebar.toggled .nav-item .nav-link span {
+	    font-size: 0.65rem;
+	    display: block;
+	}
+}
+@media (min-width: 768px){
+	.sidebar .nav-item .nav-link span {
+	    font-size: 1rem;
+	    display: inline;
+	}
+}
+.sidebar .nav-item .nav-link span {
+    font-size: 0.65rem;
+    display: block;
+}
+
+.nav-item:hover {
+	background-color: #888; 
+}
+
+.thumb {
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+/*--------------------------------------------------------------
+# Content Wrapper
+--------------------------------------------------------------*/
+
+#content-wrapper {
+	overflow-x: hidden;
+	height: 100vh;
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 80px;
+    background-color: #eee;
+}
+.nav-item-content {
+	float: left;
+}
+.card .card-header {
+	border-bottom: none;
+    background: transparent;
+}
+.card [class*=card-header-] .card-icon, .card [class*=card-header-] .card-text {
+    border-radius: 3px;
+    background-color: #999;
+    padding: 15px;
+    margin-top: -20px;
+    margin-right: 15px;
+    float: left;
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(76,175,80,.4);
+}
+.status-circle {
+	border-radius: 50%;
+	width: 12px;
+	height: 12px;
+}
+
+/*--------------------------------------------------------------
+# Main-Meter
+--------------------------------------------------------------*/
+
+.meter-label-now {
+	position: absolute;
+	top: 40%;
+}
+.meter-label-goal {
+	position: absolute;
+	top: 55%;
+}
+.meter-label-grade {
+	position: absolute;
+	top: 65%;
+}
+.meter-progress {
+	position: absolute;
+	top: 55%;	
+}
+.meter-progress-flat {
+	position: absolute;
+	top: 70%;
+	height: 8px;
+	width: 162px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track-piece  {
+    background-color: #dfddfe;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    height: 16px;
+    background-color: gray;
+}
+
+/*--------------------------------------------------------------
+# User-Profile
+--------------------------------------------------------------*/
+
+.card-profile, .card-testimonial {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.card-profile .card-avatar {
+    max-width: 130px;
+    max-height: 130px;
+}
+
+
+/*--------------------------------------------------------------
+# Color
+--------------------------------------------------------------*/
+.azure {
+	color: #0BEEFF;
+}
+.azure-background {
+	background-color: #0BEEFF!important;
+}
+.blue {
+	color: #0F16E8;
+}
+.blue-background {
+	background-color: #0F16E8!important;
+}
+.green {
+	color: #15FE2B;
+}
+.green-background {
+	background-color: #15FE2B!important;
+}
+.yellow {
+	color: #FEE50D;
+}
+.yellow-background {
+	background-color: #FEE50D!important; 	
+}
+.orange {
+	color: #FEB10D;
+}
+.orange-background {
+	background-color: #FEB10D!important; 	
+}
+.red {
+	color: #FF160D;
+}
+.red-background {
+	background-color: #FF160D!important;
+}
+.purple {
+	color: #E801B5;
+}
+.purple-background {
+	background-color: #E801B5!important;
+}
+.black {
+	color: #222
+}
+.black-background {
+	background-color: #222!important;
+}

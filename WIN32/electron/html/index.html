@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>CodeCounter</title>
+    <script type="text/javascript">if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" 
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="javascripts/jquery-circle-progress/dist/circle-progress.js"></script>
+    <script src="javascripts/index.js"></script>
+    <script src="../renderer.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/login.css">
+  </head>
+  <body>
+    <!--    We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script> -->
+    <div id="title-bar">
+        <div id="title-bar-btns">
+             <button id="min-btn" class="btn">-</button>
+             <button id="max-btn" class="btn">+</button>
+             <button id="close-btn" class="btn">x</button>
+        </div>
+     </div>
+      <div id ="wrapper">
+          <ul class = "sidebar navbar-nav toggled">
+            <li class="nav-item main-menu" >
+              <a class="nav-link" >
+                <div class="thumb">
+                  <img src="images/basic_profile.png" width="52px" height="52px">
+                </div>
+                <strong>Admin</strong>
+              </a>
+            </li>
+            <li class="nav-item active main-menu">
+              <a class="nav-link">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>대시보드</span>
+              </a>
+            </li>
+            <li class="nav-item main-menu">
+              <a class="nav-link">
+                <i class="fas fa-fw fa-user-circle"></i>
+                <span>계정</span>
+              </a>
+            </li>
+            <li class="nav-item main-menu">
+              <a class="nav-link">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>설정</span>
+              </a>
+            </li>
+          </ul>
+        <div id="content-wrapper">
+          <nav class="navbar">
+            <div class="container-fluid">
+              <div class="status" style="display: inline-flex;">
+                <div class="status-circle red-background" id="status-circle"></div>
+                <a class="ml-3" href="#" id="status">CodeCounter Disabled</a>                
+                <div class="ml-3 spinner-border spinner-border-sm green" role="status" id="progress">
+                  <span class="sr-only"></span>
+                </div>
+                <a class="ml-3" href="#" id="editor"></a>
+              </div>
+              <div class="navbar justify-content-end">
+                <ul class="navbar-nav-content">
+                  <li class="nav-item-content">
+                    <a class="nav-link">
+                      <i class="fas fa-bell"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item-content">
+                    <a class="nav-link">
+                      <i class="fas fa-user-circle"></i>
+                    </a>    
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div class="content">
+            <div class="container-fluid">
+              <div class="row mb-4">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon orange-background">
+                        <i class="fas fa-tachometer-alt meterial-tag"></i>
+                      </div>
+                      <h5 class="card-title">대시보드</h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col d-flex justify-content-center">
+                          <h1 class ="meter-label-now" id="line">0 Line</h1>
+                          <label class ="meter-label-goal red" id="next">256 line</label>
+                          <label class="meter-label-grade orange" id="level">
+                            <i class="fas fa-fw fa-trophy"></i>
+                          Orange Level</label>
+                           <div class ="progress meter-progress-flat">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated orange-background"  
+                             id ="progressbar"
+                             role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 25%">
+                               
+                             </div>
+                           </div>
+                          <div id="main-meter"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                
+              </div>
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon orange-background">
+                        <i class="fas fa-chart-line meterial-tag"></i>
+                      </div>
+                      <h5 class="card-title">랭킹</h5>
+                    </div>
+                    <div class="card-body">
+                      <table class="table">
+                        <tbody>
+                          <thead>
+                            <tr>
+                              <th scope="col">순위</th>
+                              <th scope="col">이름</th>
+                              <th scope="col">라인</th>
+                            </tr>
+                          </thead>
+                          <tr>
+                            <td>4</td>
+                            <td><a>6u</a></td>
+                            <td>??</td>
+                          </tr>
+                          <tr class="orange-background" id="active">
+                            <td>5.</td>
+                            <td><a>Admin</a></td>
+                            <td>2048</td>
+                          </tr>
+                          <tr>
+                            <td>6.</td>
+                            <td><a>park</a></td>
+                            <td>??</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon orange-background">
+                        <i class="fas fa-code meterial-tag"></i>
+                      </div>
+                      <h5 class="card-title">코드</h5>
+                    </div>
+                    <div class="card-body">
+                      <table class="table">
+                        <tbody>
+                          <thead>
+                            <tr>
+                              <th scope="col">순위</th>
+                              <th scope="col">언어</th>
+                              <th scope="col">라인</th>
+                            </tr>
+                          </thead>
+                          <tr class="first">
+                            <td>1.</td>
+                            <td>6u</td>
+                            <td>??</td>
+                          </tr>
+                          <tr class="second">
+                            <td>2.</td>
+                            <td>Admin</td>
+                            <td>2048</td>
+                          </tr>
+                          <tr class="third">
+                            <td>3.</td>
+                            <td>park</td>
+                            <td>??</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    <script>
+      // You can also require other files to run in this process
+     if (window.module) module = window.module;
+    </script>
+  </body>
+</html>
