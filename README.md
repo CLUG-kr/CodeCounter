@@ -9,4 +9,6 @@
  - python 2.7
 ## 지원목록
  - SublimeText3
- - InteliJ 
+ - InteliJ 계열
+ - Atom (예정)
+ - VS 계열 (예정)
