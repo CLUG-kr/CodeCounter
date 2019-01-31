@@ -1,0 +1,3 @@
+PROC_SUBLIME_TEXT = 'sublime_text.exe'
+PROC_PYCAHRM = 'pycharm64.exe'
+PROCLIST = [PROC_SUBLIME_TEXT, PROC_PYCAHRM]
